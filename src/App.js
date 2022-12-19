@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "@chakra-ui/react";
+import "./App.css";
+import { AboutSection } from "./Components/AboutSection";
+import Contact from "./Components/Contact";
+import { ContactSection } from "./Components/ContactSection";
+import GithubStats from "./Components/GithubStats";
+import { HeroSection } from "./Components/HeroSection";
+import Navbar from "./Components/Navbar";
+import { ProjectsSection } from "./Components/ProjectSection";
+import { SkillsSection } from "./Components/SkillSection";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container bgImage={'/Frame93.svg'} bgSize='100%' maxW={"100%"}>
+      <Contact />
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <GithubStats />
+      <ContactSection />
+    </Container>
   );
 }
 

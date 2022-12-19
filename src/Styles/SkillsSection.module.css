@@ -1,0 +1,46 @@
+.skillIcon {
+    font-size: 40px;
+    color: rgb(8, 111, 143);
+  }
+  .reactIcon:hover {
+    color: rgb(94, 211, 243);
+  }
+  .reduxIcon:hover {
+    color: rgb(118, 76, 183);
+  }
+  .jsIcon:hover {
+    color: rgb(247, 223, 30);
+  }
+  .muiIcon:hover {
+    color: rgb(0, 129, 203);
+  }
+  .htmlIcon:hover {
+    color: rgb(233, 98, 40);
+  }
+  .cssIcon:hover {
+    color: rgb(37, 75, 221);
+  }
+  .nodeIcon:hover {
+    color: rgb(95, 151, 89);
+  }
+  .mongoIcon:hover {
+    color: rgb(82, 167, 75);
+  }
+  .gitIcon:hover {
+    color: rgb(232, 78, 49);
+  }
+  .expIcon {
+    margin: 0;
+  }
+  .expIcon:hover {
+    color: black;
+  }
+  .leaderIcon:hover {
+    color: rgb(82, 167, 75);
+  }
+  .teamIcon:hover {
+    color: rgb(232, 78, 49);
+  }
+  .problemIcon:hover {
+    color: rgb(255, 0, 0);
+  }
