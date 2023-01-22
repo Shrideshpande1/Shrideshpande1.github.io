@@ -40,6 +40,7 @@ import {
             </Heading>
             <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
            
+           
               <Button
                 bg={"rgb(1, 75, 97);"}
                 _hover={{ bg: "rgb(14, 129, 165)" }}
@@ -52,6 +53,24 @@ import {
                 fontSize="16px"
               >
                 Resume
+              </Button>
+            </a>
+            <a href="https://drive.google.com/drive/folders/12jDSMXB5wHdkHM0JVR_WMi7f1JxeVGIb?usp=share_link">
+           
+           
+              <Button
+                bg={"rgb(1, 75, 97);"}
+                _hover={{ bg: "rgb(14, 129, 165)" }}
+                color="white"
+                variant={"solid"}
+                width="120px"
+                height={"40px"}
+                borderRadius="3px"
+                marginBottom={"10px"}
+                fontSize="16px"
+                marginLeft={"10px"}
+              >
+                View Resume
               </Button>
             </a>
           </Box>
