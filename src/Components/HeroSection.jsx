@@ -55,7 +55,7 @@ import {
                 Resume
               </Button>
             </a>
-            <a href="https://drive.google.com/drive/folders/12jDSMXB5wHdkHM0JVR_WMi7f1JxeVGIb?usp=share_link">
+            <a target="_blank"  href="https://drive.google.com/drive/folders/12jDSMXB5wHdkHM0JVR_WMi7f1JxeVGIb?usp=share_link">
            
            
               <Button
