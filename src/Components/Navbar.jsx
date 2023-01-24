@@ -84,8 +84,11 @@ export default function Navbar() {
               >
                 <Text _hover={{ borderBottom: "5px solid" }}>Contact</Text>
               </Link>
+           
+             
               <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_"
->
+              
+              onClick={()=>window.open("https://drive.google.com/file/d/1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_/view?usp=share_link")}>
                 <Button
                   bg={"rgb(1, 75, 97);"}
                   _hover={{ bg: "rgb(14, 129, 165)" }}
@@ -95,7 +98,9 @@ export default function Navbar() {
                 >
                   Resume
                 </Button>
-              </a>{" "}
+              </a>
+           
+              {" "}
             </>
           ) : (
             <Navmenu />
@@ -105,4 +110,3 @@ export default function Navbar() {
     </Container>
   );
 }
-
