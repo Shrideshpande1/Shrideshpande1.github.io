@@ -8,6 +8,9 @@ import {
   SiReact,
   SiRedux,
   SiChakraui,
+SiMongodb,
+SiExpress,
+
 } from "react-icons/si";
 import { Container, Grid, GridItem, Heading } from "@chakra-ui/react";
 const projects = [
@@ -38,6 +41,25 @@ const projects = [
       <SiJavascript className={styles.stackIcon} />,
       <SiHtml5 className={styles.stackIcon} />,
       <SiCss3 className={styles.stackIcon} />,
+    ],
+  },
+  {
+    name: "Amazon clone",
+    img: "/project4.png",
+    link: "https://atozamazon.netlify.app/",
+    git: "https://github.com/Channa47/AtoZ-Amazon.in--Clone",
+    about:
+      "Amazon is a vast Internet-based enterprise that sells books, music, movies, housewares, electronics, toys, and many other goods",
+    stacks: [
+      <SiJavascript className={styles.stackIcon} />,
+      <SiHtml5 className={styles.stackIcon} />,
+      <SiCss3 className={styles.stackIcon} />,
+      <SiRedux className={styles.stackIcon} />,
+      <SiChakraui className={styles.stackIcon} />,
+      <SiMongodb className={styles.stackIcon} />,
+      <SiExpress className={styles.stackIcon} />,
+      
+      
     ],
   },
 
