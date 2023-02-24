@@ -38,7 +38,7 @@ export function ProjectCard({ name, img, git, link, stacks, about }) {
         margin="none"
         borderBottomRadius={"10px"}
       >
-        <Heading color={"rgb(14, 36, 49)"} size={"lg"}>
+        <Heading color={"#1a202c"} size={"lg"}>
           {name}
         </Heading>
         <br />
