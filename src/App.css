@@ -1,4 +1,105 @@
 .App {
-  text-align: center;
   width: 100%;
+  min-height: 100vh;
+  background: #0a0a0f;
+  position: relative;
+}
+
+/* Animated gradient background orbs */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: #6c63ff;
+  top: -200px;
+  left: -200px;
+  animation: float1 20s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: #00d4aa;
+  bottom: -100px;
+  right: -200px;
+  animation: float2 25s ease-in-out infinite;
+}
+
+.bg-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: #ff6b9d;
+  top: 50%;
+  left: 50%;
+  animation: float3 18s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(100px, 50px); }
+  66% { transform: translate(-50px, 100px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-80px, -60px); }
+  66% { transform: translate(60px, -80px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(60px, -40px); }
+  66% { transform: translate(-40px, 60px); }
+}
+
+/* Section styling */
+.section-heading {
+  background: linear-gradient(135deg, #6c63ff, #00d4aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #6c63ff 0%, #00d4aa 50%, #6c63ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* Glow effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #6c63ff, #00d4aa, #ff6b9d);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-border:hover::before {
+  opacity: 1;
 }

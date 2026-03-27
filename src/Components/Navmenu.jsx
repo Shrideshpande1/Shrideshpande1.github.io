@@ -2,58 +2,37 @@ import { Icon, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-scroll";
 import { AiOutlineMenu } from "react-icons/ai";
+
 const Navmenu = () => {
   return (
     <Menu>
       <MenuButton>
-        <Icon as={AiOutlineMenu} width="20px" h={"20px"} />
+        <Icon as={AiOutlineMenu} width="24px" h={"24px"} color="#6c63ff" />
       </MenuButton>
-      <MenuList>
-        <MenuItem>
-          <Link
-            to="about"
-            smooth={true}
-            duration={1000}
-            spy={true}
-            hashSpy={true}
+      <MenuList
+        bg="#12121a"
+        border="1px solid rgba(108, 99, 255, 0.2)"
+        borderRadius="12px"
+        py="8px"
+      >
+        {["about", "skills", "projects", "contact"].map((item) => (
+          <MenuItem
+            key={item}
+            bg="transparent"
+            color="#94a3b8"
+            _hover={{ bg: "rgba(108, 99, 255, 0.1)", color: "#6c63ff" }}
+            textTransform="capitalize"
           >
-            About
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link
-            to="skills"
-            smooth={true}
-            duration={1000}
-            spy={true}
-            hashSpy={true}
-          >
-            Skills
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link
-            to="projects"
-            smooth={true}
-            duration={1000}
-            spy={true}
-            hashSpy={true}
-          >
-            Projects
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link
-            to="contact"
-            smooth={true}
-            duration={1000}
-            spy={true}
-            hashSpy={true}
-          >
-            Contact
-          </Link>
-        </MenuItem>
-        <MenuItem>
+            <Link to={item} smooth={true} duration={1000} spy={true} hashSpy={true}>
+              {item}
+            </Link>
+          </MenuItem>
+        ))}
+        <MenuItem
+          bg="transparent"
+          color="#94a3b8"
+          _hover={{ bg: "rgba(108, 99, 255, 0.1)", color: "#6c63ff" }}
+        >
           <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
             Resume
           </a>

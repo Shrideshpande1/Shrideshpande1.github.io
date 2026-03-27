@@ -1,86 +1,237 @@
 import {
-    Button,
-    Grid,
-    HStack,
-    Heading,
-    GridItem,
-    Image,
-    Box,
-  } from "@chakra-ui/react";
-  export function HeroSection() {
-    return (
-      <Grid
-        paddingTop={"200px"}
-        maxW={"80%"}
-        id="hero"
-        margin={"auto"}
-        gridTemplateColumns={{
-          lg: "repeat(2,1fr)",
-          md: "repeat(1,1fr)",
-          sm: "repeat(1,1fr)",
-        }}
-        gap="30px"
-      >
-        <GridItem display={"flex"} textAlign="left" alignItems={"center"}>
-          <Box>
-            <Heading
-              size={{ lg: "2xl", md: "2xl", sm: "2xl", base: "xl" }}
-              color="rgb(8, 111, 143)"
-              marginBottom={{ lg: "10px" }}
-            >
-              SHRIPAD DESHPANDE
-            </Heading>
-            <Heading
-              fontWeight={"normal"}
-              size={{ lg: "xl", md: "xl", sm: "xl", base: "lg" }}
-              color="rgb(90,90,90)"
-              marginBottom={"16px"}
-            >
-              Full Stack Web Developer
-            </Heading>
-            <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
-           
-           
-              <Button
-                bg={"rgb(1, 75, 97);"}
-                _hover={{ bg: "rgb(14, 129, 165)" }}
-                color="white"
-                variant={"solid"}
-                width="100px"
-                height={"40px"}
-                borderRadius="3px"
-                marginBottom={"10px"}
-                fontSize="16px"
+  Button,
+  Grid,
+  Heading,
+  GridItem,
+  Box,
+  Text,
+  HStack,
+  Icon,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BiEnvelope } from "react-icons/bi";
+
+const MotionBox = motion(Box);
+const MotionHeading = motion(Heading);
+const MotionText = motion(Text);
+
+export function HeroSection() {
+  return (
+    <Grid
+      paddingTop={"140px"}
+      paddingBottom="80px"
+      maxW={"1100px"}
+      id="hero"
+      margin={"auto"}
+      minH="100vh"
+      alignItems="center"
+      gridTemplateColumns={{
+        lg: "repeat(2,1fr)",
+        md: "repeat(1,1fr)",
+        sm: "repeat(1,1fr)",
+      }}
+      gap="40px"
+      px="24px"
+    >
+      <GridItem display={"flex"} textAlign="left" alignItems={"center"}>
+        <Box>
+          <MotionText
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            fontSize="16px"
+            fontFamily="'Fira Code', monospace"
+            color="#6c63ff"
+            marginBottom="12px"
+            letterSpacing="2px"
+          >
+            Hi, I am
+          </MotionText>
+
+          <MotionHeading
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            fontSize={{ lg: "56px", md: "48px", sm: "40px", base: "36px" }}
+            color="white"
+            marginBottom="8px"
+            fontWeight="800"
+            lineHeight="1.1"
+          >
+            Shripad Deshpande
+          </MotionHeading>
+
+          <MotionHeading
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            fontSize={{ lg: "36px", md: "28px", sm: "24px", base: "22px" }}
+            fontWeight="600"
+            marginBottom="24px"
+            className="gradient-text"
+          >
+            Full Stack Developer
+          </MotionHeading>
+
+          <MotionText
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            fontSize={{ lg: "18px", md: "16px", base: "15px" }}
+            color="#94a3b8"
+            lineHeight="1.8"
+            marginBottom="32px"
+            maxW="500px"
+          >
+            I build real-world products with strong UI, scalable architecture,
+            and great user experience. 3+ years specializing in React.js & MERN stack.
+          </MotionText>
+
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <HStack spacing="12px" marginBottom="32px">
+              <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
+                <Button
+                  bg="#6c63ff"
+                  _hover={{ bg: "#7b73ff", transform: "translateY(-2px)" }}
+                  color="white"
+                  height="48px"
+                  px="32px"
+                  borderRadius="8px"
+                  fontSize="15px"
+                  fontWeight="600"
+                  transition="all 0.3s ease"
+                  boxShadow="0 4px 20px rgba(108, 99, 255, 0.3)"
+                >
+                  Download Resume
+                </Button>
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://drive.google.com/file/d/1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_/view?usp=share_link"
               >
-                Resume
-              </Button>
-            </a>
-            <a target="_blank"  href="https://drive.google.com/file/d/1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_/view?usp=share_link">
-           
-           
-              <Button
-                bg={"rgb(1, 75, 97);"}
-                _hover={{ bg: "rgb(14, 129, 165)" }}
-                color="white"
-                variant={"solid"}
-                width="120px"
-                height={"40px"}
-                borderRadius="3px"
-                marginBottom={"10px"}
-                fontSize="16px"
-                marginLeft={"10px"}
-              >
-                View Resume
-              </Button>
-            </a>
+                <Button
+                  bg="transparent"
+                  border="1px solid rgba(108, 99, 255, 0.5)"
+                  _hover={{
+                    bg: "rgba(108, 99, 255, 0.1)",
+                    borderColor: "#6c63ff",
+                    transform: "translateY(-2px)",
+                  }}
+                  color="#6c63ff"
+                  height="48px"
+                  px="32px"
+                  borderRadius="8px"
+                  fontSize="15px"
+                  fontWeight="600"
+                  transition="all 0.3s ease"
+                >
+                  View Resume
+                </Button>
+              </a>
+            </HStack>
+
+            <HStack spacing="16px">
+              <a href="https://github.com/Shrideshpande1" target="_blank" rel="noreferrer">
+                <Icon
+                  as={BsGithub}
+                  w="22px"
+                  h="22px"
+                  color="#64748b"
+                  _hover={{ color: "#6c63ff" }}
+                  transition="color 0.3s ease"
+                  cursor="pointer"
+                />
+              </a>
+              <a href="https://www.linkedin.com/in/deshpandeshripad/" target="_blank" rel="noreferrer">
+                <Icon
+                  as={BsLinkedin}
+                  w="22px"
+                  h="22px"
+                  color="#64748b"
+                  _hover={{ color: "#6c63ff" }}
+                  transition="color 0.3s ease"
+                  cursor="pointer"
+                />
+              </a>
+              <a href="mailto:shrideshpande9175@gmail.com">
+                <Icon
+                  as={BiEnvelope}
+                  w="24px"
+                  h="24px"
+                  color="#64748b"
+                  _hover={{ color: "#6c63ff" }}
+                  transition="color 0.3s ease"
+                  cursor="pointer"
+                />
+              </a>
+            </HStack>
+          </MotionBox>
+        </Box>
+      </GridItem>
+
+      <GridItem display="flex" justifyContent="center" alignItems="center">
+        <MotionBox
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          position="relative"
+          w={{ lg: "400px", md: "350px", base: "280px" }}
+          h={{ lg: "400px", md: "350px", base: "280px" }}
+        >
+          {/* Decorative code block */}
+          <Box
+            position="absolute"
+            top="0"
+            left="0"
+            right="0"
+            bottom="0"
+            borderRadius="24px"
+            bg="rgba(108, 99, 255, 0.05)"
+            border="1px solid rgba(108, 99, 255, 0.15)"
+            overflow="hidden"
+            p="32px"
+            fontFamily="'Fira Code', monospace"
+            fontSize={{ lg: "14px", base: "11px" }}
+          >
+            <Text color="#6c63ff" mb="4px">{"const"} <Text as="span" color="#00d4aa">developer</Text> = {"{"}</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">name: <Text as="span" color="#fbbf24">"Shripad Deshpande"</Text>,</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">role: <Text as="span" color="#fbbf24">"Full Stack Developer"</Text>,</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">experience: <Text as="span" color="#f472b6">"3+ years"</Text>,</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">skills: [</Text>
+            <Text color="#fbbf24" pl="40px" mb="2px">"React.js", "Node.js",</Text>
+            <Text color="#fbbf24" pl="40px" mb="2px">"MongoDB", "Express",</Text>
+            <Text color="#fbbf24" pl="40px" mb="2px">"Tailwind", "Redux"</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">],</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">passion: <Text as="span" color="#fbbf24">"Building great UIs"</Text>,</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">
+              <Text as="span" color="#6c63ff">hireable</Text>: <Text as="span" color="#00d4aa">true</Text>
+            </Text>
+            <Text color="#6c63ff">{"}"}</Text>
+
+            {/* Blinking cursor */}
+            <Box
+              display="inline-block"
+              w="8px"
+              h="18px"
+              bg="#6c63ff"
+              ml="4px"
+              animation="blink 1s step-end infinite"
+              sx={{
+                "@keyframes blink": {
+                  "0%, 100%": { opacity: 1 },
+                  "50%": { opacity: 0 },
+                },
+              }}
+            />
           </Box>
-        </GridItem>
-        <GridItem>
-          <Image
-            width={"100%"}
-            src="https://camo.githubusercontent.com/c1dcb74cc1c1835b1d716f5051499a2814c683c806b15f04b0eba492863703e9/68747470733a2f2f63646e2e6472696262626c652e636f6d2f75736572732f3733303730332f73637265656e73686f74732f363538313234332f6176656e746f2e676966"
-          />
-        </GridItem>
-      </Grid>
-    );
-  }
+        </MotionBox>
+      </GridItem>
+    </Grid>
+  );
+}

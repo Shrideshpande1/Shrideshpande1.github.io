@@ -1,60 +1,71 @@
-import { Container, Flex, Icon } from "@chakra-ui/react";
+import { Container, Icon, VStack } from "@chakra-ui/react";
 import React from "react";
 import { BiPhoneCall, BiEnvelope } from "react-icons/bi";
-
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { motion } from "framer-motion";
+
+const MotionContainer = motion(Container);
+
 const Contact = () => {
+  const links = [
+    {
+      href: "mailto:shrideshpande9175@gmail.com",
+      icon: BiEnvelope,
+      hoverColor: "#ff6b9d",
+    },
+    {
+      href: "https://wa.me/+919284149182",
+      icon: BiPhoneCall,
+      hoverColor: "#00d4aa",
+    },
+    {
+      href: "https://github.com/Shrideshpande1",
+      icon: BsGithub,
+      hoverColor: "#e2e8f0",
+    },
+    {
+      href: "https://www.linkedin.com/in/deshpandeshripad/",
+      icon: BsLinkedin,
+      hoverColor: "#0077b5",
+    },
+  ];
+
   return (
-    <Container
-      maxW={"5%"}
-      marginRight={"0px"}
-      position={"fixed"}
-      right="0px"
-      top={"50%"}
+    <MotionContainer
+      maxW="50px"
+      position="fixed"
+      right={{ lg: "24px", base: "12px" }}
+      top="50%"
+      transform="translateY(-50%)"
+      zIndex="50"
+      display={{ base: "none", md: "block" }}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 1 }}
     >
-      <Flex
-        justifyContent="center"
-        gap="20px"
-        width={"100%"}
-        flexDir={"column"}
+      <VStack
+        spacing="16px"
+        p="12px 8px"
+        bg="rgba(10, 10, 15, 0.6)"
+        backdropFilter="blur(10px)"
+        border="1px solid rgba(108, 99, 255, 0.1)"
+        borderRadius="12px"
       >
-       <a
-          href="https://mail.google.com/mail/u/0/?fs=1&to=shrideshpande9175@gmail.com&tf=cm"
-          target={"_blank"}
-        >
-          <Icon
-            _hover={{ color: "rgb(234,67,53)", cursor: "pointer" }}
-            width={"70%"}
-            height="70%"
-            as={BiEnvelope}
-          />
-        </a>
-        <a href="https://wa.me/+919284149182" target={"_blank"}>
-          <Icon
-            _hover={{ color: "rgb(47,230,100)", cursor: "pointer" }}
-            width={"70%"}
-            height="70%"
-            as={BiPhoneCall}
-          />
-        </a>
-        <a href="https://github.com/Shrideshpande1" target={"_blank"}>
-          <Icon
-            _hover={{ color: "grey", cursor: "pointer" }}
-            width={"70%"}
-            height="70%"
-            as={BsGithub}
-          />
-        </a>
-        <a href="https://www.linkedin.com/in/deshpandeshripad/" target={"_blank"}>
-          <Icon
-            _hover={{ color: "rgb(9,97,184)", cursor: "pointer" }}
-            width={"70%"}
-            height="70%"
-            as={BsLinkedin}
-          />
-        </a>
-      </Flex>
-    </Container>
+        {links.map(({ href, icon, hoverColor }) => (
+          <a key={href} href={href} target="_blank" rel="noreferrer">
+            <Icon
+              as={icon}
+              w="20px"
+              h="20px"
+              color="#64748b"
+              _hover={{ color: hoverColor }}
+              transition="all 0.3s ease"
+              cursor="pointer"
+            />
+          </a>
+        ))}
+      </VStack>
+    </MotionContainer>
   );
 };
 
