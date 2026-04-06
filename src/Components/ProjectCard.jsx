@@ -15,6 +15,10 @@ import { Icon } from "@chakra-ui/react";
 export function ProjectCard({ name, subtitle, about, role, stacks, highlights, color, link }) {
   return (
     <Box
+      as="a"
+      href={link}
+      target="_blank"
+      rel="noreferrer"
       p={{ lg: "32px", base: "24px" }}
       bg="rgba(255, 255, 255, 0.02)"
       border="1px solid rgba(108, 99, 255, 0.1)"
@@ -23,11 +27,15 @@ export function ProjectCard({ name, subtitle, about, role, stacks, highlights, c
       _hover={{
         borderColor: `${color}50`,
         bg: "rgba(255, 255, 255, 0.03)",
-        transform: "translateY(-2px)",
-        boxShadow: `0 8px 40px ${color}10`,
+        transform: "translateY(-4px)",
+        boxShadow: `0 12px 50px ${color}20`,
+        textDecoration: "none",
       }}
       position="relative"
       overflow="hidden"
+      cursor="pointer"
+      display="block"
+      _focus={{ outline: "none" }}
     >
       {/* Accent line */}
       <Box

@@ -7,15 +7,18 @@ import {
   Flex,
   Box,
   useMediaQuery,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Navmenu from "./Navmenu";
+import { ResumeModal } from "./ResumeModal";
 
 const MotionFlex = motion(Flex);
 
 export default function Navbar() {
   const [isLargerThan800] = useMediaQuery("(min-width: 1050px)");
   const name = "<Shripad/>";
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Container
@@ -28,6 +31,7 @@ export default function Navbar() {
       top="0px"
       left="0px"
       zIndex={"100"}
+      data-navbar="true"
     >
       <MotionFlex
         justifyContent={"space-between"}
@@ -81,30 +85,23 @@ export default function Navbar() {
                   </Text>
                 </Link>
               ))}
-              <a
-                href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_"
-                onClick={() =>
-                  window.open(
-                    "https://drive.google.com/file/d/1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_/view?usp=share_link"
-                  )
-                }
+              <Button
+                size="sm"
+                bg="transparent"
+                border="1px solid #6c63ff"
+                color="#6c63ff"
+                _hover={{ bg: "#6c63ff", color: "white" }}
+                borderRadius="6px"
+                fontWeight="500"
+                transition="all 0.3s ease"
+                onClick={onOpen}
               >
-                <Button
-                  size="sm"
-                  bg="transparent"
-                  border="1px solid #6c63ff"
-                  color="#6c63ff"
-                  _hover={{ bg: "#6c63ff", color: "white" }}
-                  borderRadius="6px"
-                  fontWeight="500"
-                  transition="all 0.3s ease"
-                >
-                  Resume
-                </Button>
-              </a>
+                Resume
+              </Button>
+              <ResumeModal isOpen={isOpen} onClose={onClose} />
             </>
           ) : (
-            <Navmenu />
+            <Navmenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
           )}
         </Flex>
       </MotionFlex>

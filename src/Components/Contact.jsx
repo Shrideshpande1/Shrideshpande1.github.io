@@ -44,21 +44,21 @@ const Contact = () => {
       transition={{ duration: 0.5, delay: 1 }}
     >
       <VStack
-        spacing="16px"
-        p="12px 8px"
-        bg="rgba(10, 10, 15, 0.6)"
+        spacing="20px"
+        p="20px 16px"
+        bg="rgba(10, 10, 15, 0.8)"
         backdropFilter="blur(10px)"
-        border="1px solid rgba(108, 99, 255, 0.1)"
-        borderRadius="12px"
+        border="2px solid rgba(108, 99, 255, 0.2)"
+        borderRadius="16px"
       >
         {links.map(({ href, icon, hoverColor }) => (
           <a key={href} href={href} target="_blank" rel="noreferrer">
             <Icon
               as={icon}
-              w="20px"
-              h="20px"
+              w="26px"
+              h="26px"
               color="#64748b"
-              _hover={{ color: hoverColor }}
+              _hover={{ color: hoverColor, transform: "scale(1.2)" }}
               transition="all 0.3s ease"
               cursor="pointer"
             />

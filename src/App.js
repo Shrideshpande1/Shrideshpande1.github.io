@@ -8,10 +8,13 @@ import { HeroSection } from "./Components/HeroSection";
 import Navbar from "./Components/Navbar";
 import { ProjectsSection } from "./Components/ProjectSection";
 import { SkillsSection } from "./Components/SkillSection";
+import { CustomCursor } from "./Components/CustomCursor";
 
 function App() {
   return (
     <Box className="App" position="relative">
+      <CustomCursor />
+
       {/* Animated background orbs */}
       <div className="bg-orb bg-orb-1" />
       <div className="bg-orb bg-orb-2" />
@@ -20,11 +23,21 @@ function App() {
       <Contact />
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <GithubStats />
-      <ContactSection />
+      <div data-section="about">
+        <AboutSection />
+      </div>
+      <div data-section="skills">
+        <SkillsSection />
+      </div>
+      <div data-section="projects">
+        <ProjectsSection />
+      </div>
+      <div data-section="github">
+        <GithubStats />
+      </div>
+      <div data-section="contact">
+        <ContactSection />
+      </div>
     </Box>
   );
 }

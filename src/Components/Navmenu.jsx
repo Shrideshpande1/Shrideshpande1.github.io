@@ -2,10 +2,12 @@ import { Icon, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-scroll";
 import { AiOutlineMenu } from "react-icons/ai";
+import { ResumeModal } from "./ResumeModal";
 
-const Navmenu = () => {
+const Navmenu = ({ isOpen, onOpen, onClose }) => {
   return (
-    <Menu>
+    <>
+      <Menu>
       <MenuButton>
         <Icon as={AiOutlineMenu} width="24px" h={"24px"} color="#6c63ff" />
       </MenuButton>
@@ -32,13 +34,14 @@ const Navmenu = () => {
           bg="transparent"
           color="#94a3b8"
           _hover={{ bg: "rgba(108, 99, 255, 0.1)", color: "#6c63ff" }}
+          onClick={onOpen}
         >
-          <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
-            Resume
-          </a>
+          Resume
         </MenuItem>
       </MenuList>
     </Menu>
+      <ResumeModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 };
 

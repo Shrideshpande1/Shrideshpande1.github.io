@@ -7,33 +7,48 @@ import {
   Text,
   HStack,
   Icon,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { BiEnvelope } from "react-icons/bi";
+import { ResumeModal } from "./ResumeModal";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 
 export function HeroSection() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/Shripad_Deshpande_Resume.pdf";
+    link.download = "Shripad_Deshpande_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <Grid
-      paddingTop={"140px"}
-      paddingBottom="80px"
-      maxW={"1100px"}
-      id="hero"
-      margin={"auto"}
-      minH="100vh"
-      alignItems="center"
-      gridTemplateColumns={{
-        lg: "repeat(2,1fr)",
-        md: "repeat(1,1fr)",
-        sm: "repeat(1,1fr)",
-      }}
-      gap="40px"
-      px="24px"
-    >
+    <>
+      <Grid
+        paddingTop={"140px"}
+        paddingBottom="80px"
+        maxW={"1100px"}
+        id="hero"
+        margin={"auto"}
+        minH="100vh"
+        alignItems="center"
+        gridTemplateColumns={{
+          lg: "repeat(2,1fr)",
+          md: "repeat(1,1fr)",
+          sm: "repeat(1,1fr)",
+        }}
+        gap="40px"
+        px="24px"
+        data-section="hero section"
+      >
       <GridItem display={"flex"} textAlign="left" alignItems={"center"}>
         <Box>
           <MotionText
@@ -94,46 +109,40 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <HStack spacing="12px" marginBottom="32px">
-              <a href="https://drive.google.com/uc?export=download&id=1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_">
-                <Button
-                  bg="#6c63ff"
-                  _hover={{ bg: "#7b73ff", transform: "translateY(-2px)" }}
-                  color="white"
-                  height="48px"
-                  px="32px"
-                  borderRadius="8px"
-                  fontSize="15px"
-                  fontWeight="600"
-                  transition="all 0.3s ease"
-                  boxShadow="0 4px 20px rgba(108, 99, 255, 0.3)"
-                >
-                  Download Resume
-                </Button>
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://drive.google.com/file/d/1qyWeEke0kKyDgvCAP9Yj1Jeipl_jWpw_/view?usp=share_link"
+              <Button
+                bg="#6c63ff"
+                _hover={{ bg: "#7b73ff", transform: "translateY(-2px)" }}
+                color="white"
+                height="48px"
+                px="32px"
+                borderRadius="8px"
+                fontSize="15px"
+                fontWeight="600"
+                transition="all 0.3s ease"
+                boxShadow="0 4px 20px rgba(108, 99, 255, 0.3)"
+                onClick={handleDownloadResume}
               >
-                <Button
-                  bg="transparent"
-                  border="1px solid rgba(108, 99, 255, 0.5)"
-                  _hover={{
-                    bg: "rgba(108, 99, 255, 0.1)",
-                    borderColor: "#6c63ff",
-                    transform: "translateY(-2px)",
-                  }}
-                  color="#6c63ff"
-                  height="48px"
-                  px="32px"
-                  borderRadius="8px"
-                  fontSize="15px"
-                  fontWeight="600"
-                  transition="all 0.3s ease"
-                >
-                  View Resume
-                </Button>
-              </a>
+                Download Resume
+              </Button>
+              <Button
+                bg="transparent"
+                border="1px solid rgba(108, 99, 255, 0.5)"
+                _hover={{
+                  bg: "rgba(108, 99, 255, 0.1)",
+                  borderColor: "#6c63ff",
+                  transform: "translateY(-2px)",
+                }}
+                color="#6c63ff"
+                height="48px"
+                px="32px"
+                borderRadius="8px"
+                fontSize="15px"
+                fontWeight="600"
+                transition="all 0.3s ease"
+                onClick={onOpen}
+              >
+                View Resume
+              </Button>
             </HStack>
 
             <HStack spacing="16px">
@@ -208,7 +217,7 @@ export function HeroSection() {
             <Text color="#fbbf24" pl="40px" mb="2px">"MongoDB", "Express",</Text>
             <Text color="#fbbf24" pl="40px" mb="2px">"Tailwind", "Redux"</Text>
             <Text color="#94a3b8" pl="20px" mb="2px">],</Text>
-            <Text color="#94a3b8" pl="20px" mb="2px">passion: <Text as="span" color="#fbbf24">"Building great UIs"</Text>,</Text>
+            <Text color="#94a3b8" pl="20px" mb="2px">passion: <Text as="span" color="#fbbf24">"Building great UI's"</Text>,</Text>
             <Text color="#94a3b8" pl="20px" mb="2px">
               <Text as="span" color="#6c63ff">hireable</Text>: <Text as="span" color="#00d4aa">true</Text>
             </Text>
@@ -232,6 +241,9 @@ export function HeroSection() {
           </Box>
         </MotionBox>
       </GridItem>
-    </Grid>
+      </Grid>
+
+      <ResumeModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 }
