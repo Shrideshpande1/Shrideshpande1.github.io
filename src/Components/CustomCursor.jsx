@@ -11,25 +11,25 @@ export function CustomCursor() {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      setIsVisible(true);
 
-      // Check if hovering over a main section with data-section attribute
       const element = document.elementFromPoint(e.clientX, e.clientY);
       const sectionElement = element?.closest("[data-section]");
       const navbar = element?.closest("[data-navbar]");
 
-      if (sectionElement && !navbar) {
-        const section = sectionElement.getAttribute("data-section");
-        setSectionName(section);
-        setCursorScale(1.5); // Larger when hovering over sections
-      } else if (navbar) {
-        // In navbar area - empty cursor
+      const projectCardLink = element?.closest("a[target='_blank']");
+      const isInProjectsSection = sectionElement?.getAttribute("data-section") === "projects";
+      const isProjectCard = projectCardLink && isInProjectsSection;
+
+      if (isProjectCard) {
+        setSectionName("open");
+        setCursorScale(1.8);
+        setIsVisible(true);
+      } else if (sectionElement && !navbar) {
         setSectionName("");
-        setCursorScale(1);
+        setCursorScale(1.3);
+        setIsVisible(true);
       } else {
-        // Outside sections - empty cursor
-        setSectionName("");
-        setCursorScale(1);
+        setIsVisible(false);
       }
     };
 
@@ -46,7 +46,6 @@ export function CustomCursor() {
     };
   }, []);
 
-  // Intersection Observer for scroll-based section detection
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -55,7 +54,6 @@ export function CustomCursor() {
     };
 
     const observerCallback = (entries) => {
-      // Find which section is currently in view
       const visibleSection = entries.find((entry) => entry.isIntersecting);
 
       if (visibleSection) {
@@ -64,7 +62,6 @@ export function CustomCursor() {
           setScrolledSection(section);
         }
       } else {
-        // No section in view - reset to empty
         setScrolledSection("");
       }
     };
@@ -74,7 +71,6 @@ export function CustomCursor() {
       observerOptions
     );
 
-    // Observe all elements with data-section attribute
     const sections = document.querySelectorAll("[data-section]");
     sections.forEach((section) => observer.observe(section));
 
@@ -90,14 +86,95 @@ export function CustomCursor() {
         * {
           cursor: none !important;
         }
+
+        @keyframes orbitRing {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 12px rgba(108, 99, 255, 0.5), inset 0 0 8px rgba(108, 99, 255, 0.15);
+          }
+          50% {
+            box-shadow: 0 0 18px rgba(108, 99, 255, 0.7), inset 0 0 12px rgba(108, 99, 255, 0.25);
+          }
+        }
+
+        @keyframes float-orbit {
+          from {
+            transform: rotate(0deg) translateX(20px) rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg) translateX(20px) rotate(-360deg);
+          }
+        }
       `}</style>
 
+      {/* Rotating outer ring - slim */}
       <Box
         position="fixed"
-        width="40px"
-        height="40px"
+        width="68px"
+        height="68px"
         borderRadius="50%"
-        border="2px solid rgba(108, 99, 255, 0.6)"
+        border="1px solid rgba(108, 99, 255, 0.45)"
+        pointerEvents="none"
+        zIndex={9997}
+        transform={`translate(calc(${mousePosition.x}px - 50%), calc(${mousePosition.y}px - 50%)) scale(${cursorScale === 1.8 ? 1 : 0})`}
+        transition="all 0.05s ease-out"
+        opacity={isVisible && sectionName === "open" ? 0.9 : 0}
+        sx={{
+          animation: sectionName === "open" ? "orbitRing 4s linear infinite" : "none",
+        }}
+      />
+
+      {/* Floating orbit dots - smaller */}
+      <Box
+        position="fixed"
+        width="68px"
+        height="68px"
+        pointerEvents="none"
+        zIndex={9998}
+        transform={`translate(calc(${mousePosition.x}px - 50%), calc(${mousePosition.y}px - 50%)) scale(${cursorScale === 1.8 ? 1 : 0})`}
+        transition="all 0.05s ease-out"
+        opacity={isVisible && sectionName === "open" ? 0.9 : 0}
+      >
+        {sectionName === "open" && (
+          <>
+            {[0, 120, 240].map((angle) => (
+              <Box
+                key={angle}
+                position="absolute"
+                width="3px"
+                height="3px"
+                borderRadius="50%"
+                bg="rgba(108, 99, 255, 0.7)"
+                top="50%"
+                left="50%"
+                sx={{
+                  animation: "float-orbit 3s linear infinite",
+                  animationDelay: `${angle / 120}s`,
+                  transformOrigin: "0 0",
+                  marginTop: "-1.5px",
+                  marginLeft: "-1.5px",
+                }}
+              />
+            ))}
+          </>
+        )}
+      </Box>
+
+      {/* Main circular cursor with text */}
+      <Box
+        position="fixed"
+        width="36px"
+        height="36px"
+        borderRadius="50%"
+        border="1.5px solid rgba(108, 99, 255, 0.75)"
         pointerEvents="none"
         zIndex={9999}
         transform={`translate(calc(${mousePosition.x}px - 50%), calc(${mousePosition.y}px - 50%)) scale(${cursorScale})`}
@@ -106,13 +183,27 @@ export function CustomCursor() {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        bg={sectionName ? "rgba(108, 99, 255, 0.15)" : "transparent"}
-        boxShadow={sectionName ? "0 0 0 1px rgba(108, 99, 255, 0.4)" : "none"}
+        bg={sectionName === "open" ? "rgba(108, 99, 255, 0.12)" : "transparent"}
+        sx={{
+          animation: sectionName === "open" ? "pulse-glow 2s ease-in-out infinite" : "none",
+        }}
       >
-        {sectionName && (
+        {sectionName === "open" && (
           <Text
-            fontSize="10px"
-            fontWeight="600"
+            fontSize="7px"
+            fontWeight="800"
+            color="#6c63ff"
+            // lineHeight="1"
+            letterSpacing="0.5px"
+            // textTransform="uppercase"
+          >
+            Open
+          </Text>
+        )}
+        {sectionName && sectionName !== "open" && (
+          <Text
+            fontSize="8px"
+            fontWeight="700"
             color="#6c63ff"
             textAlign="center"
             whiteSpace="nowrap"
@@ -124,11 +215,11 @@ export function CustomCursor() {
         )}
       </Box>
 
-      {/* Optional inner dot for more precision */}
+      {/* Inner dot */}
       <Box
         position="fixed"
-        width="4px"
-        height="4px"
+        width="3px"
+        height="3px"
         borderRadius="50%"
         bg="rgba(108, 99, 255, 0.8)"
         pointerEvents="none"
